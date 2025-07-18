@@ -37,6 +37,7 @@ typec.type_check(undefined, "number"); // false
 typec.type_check({}, "object");        // true
 typec.type_check([], "object");        // true (arrays are objects)
 ```
+* If you want to check an array, please use `Array.isArray` function.
 
 **Parameters:**
 - `value` - The value to check
