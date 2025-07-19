@@ -150,7 +150,39 @@ function ensure_type_array(arr, ctype) {
 }
 
 /**
+ * Check if a value is truthy (not null, undefined, false, 0, empty string, or NaN)
+ * @param {*} value 
+ * @returns {Boolean} True if value is truthy, false otherwise
+ */
+function truthy(value) {
+  return value !== null && value !== undefined && value !== false && value !== 0 && value !== "" && !Number.isNaN(value);
+}
+
+/**
+ * Check if a value is falsy (null, undefined, false, 0, empty string, or NaN)
+ * @param {*} value 
+ * @returns {Boolean} True if value is falsy (null, undefined, false, 0, empty string, or NaN)
+ */
+function falsy(value) {
+  return !truthy(value);
+}
+
+/**
+ * Quick check if a value is true (strictly equals true)
+ * @param {*} value 
+ * @returns {Boolean} True if value is strictly true, false otherwise
+ */
+function is_true(value) {
+  return type_check(value, "boolean") && value === true;
+}
+
+/**
  * Type checking utilities module
+ * @description Provides functions for runtime type checking, null/undefined validation,
+ * and type enforcement with error handling.
+ * @author Andrew M. Pines
+ * @version 1.0.1
+ * @license MIT
  * @namespace
  */
 export default Object.freeze({
@@ -165,5 +197,11 @@ export default Object.freeze({
   /** @type {Function} Ensure multiple values match their expected types */
   ensure_type_all,
   /** @type {Function} Ensure all array elements are of expected type */
-  ensure_type_array
+  ensure_type_array,
+  /** @type {Function} Check if value is truthy (not null, undefined, false, 0, empty string, or NaN) */
+  truthy,
+  /** @type {Function} Check if value is falsy (null, undefined, false, 0, empty string, or NaN) */
+  falsy,
+  /** @type {Function} Quick check if value is strictly true */
+  is_true
 });
